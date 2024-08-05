@@ -1,11 +1,19 @@
+import { CompanySearch } from "../../company";
 import Card from "../Card/Card";
-interface Props {}
-export default function CardList(props: Props): JSX.Element {
+import { v4 as uuidv4 } from "uuid";
+interface Props {
+  searchResults: CompanySearch[];
+}
+export default function CardList({ searchResults }: Props): JSX.Element {
   return (
-    <div>
-      <Card companyName="Apple" ticker="AAPL" price={100} />
-      <Card companyName="Microsoft" ticker="MSFT" price={120} />
-      <Card companyName="Tesla" ticker="TSLA" price={200} />
-    </div>
+    <>
+      {searchResults.length > 0 ? (
+        searchResults.map((result) => (
+          <Card id={result.symbol} key={uuidv4()} searchResults={result} />
+        ))
+      ) : (
+        <p>No such companies found</p>
+      )}{" "}
+    </>
   );
 }
