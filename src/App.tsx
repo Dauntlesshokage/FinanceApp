@@ -12,11 +12,18 @@ function App() {
   const [search, setSearch] = useState<string>("");
   const [searchResults, setSearchResults] = useState<CompanySearch[]>([]);
   const [serverError, setServerError] = useState<string>("");
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+
+  function onPortfolioCreate(e: SyntheticEvent) {
+    e.preventDefault();
+    console.log(e);
+  }
+
+  function handleSearchChange(e: ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
     console.log(e);
   }
-  async function onClick(e: SyntheticEvent) {
+  async function onSearchSubmit(e: SyntheticEvent) {
+    e.preventDefault();
     const result = await searchCompanies(search);
     if (typeof result === "string") {
       setServerError(result);
@@ -27,9 +34,16 @@ function App() {
   }
   return (
     <div className="App">
-      <Search onClick={onClick} search={search} handleChange={handleChange} />
+      <Search
+        onSearchSubmit={onSearchSubmit}
+        search={search}
+        handleSearchChange={handleSearchChange}
+      />
       {serverError && <h1>{serverError}</h1>}
-      <CardList searchResults={searchResults} />
+      <CardList
+        searchResults={searchResults}
+        onPortfolioCreate={onPortfolioCreate}
+      />
     </div>
   );
 }

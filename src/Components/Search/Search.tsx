@@ -1,18 +1,19 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from "react";
 interface Props {
-  onClick: (e: SyntheticEvent) => void;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSearchSubmit: (e: SyntheticEvent) => void;
+  handleSearchChange: (e: ChangeEvent<HTMLInputElement>) => void;
   search: string | undefined;
 }
 export default function Search({
-  onClick,
-  handleChange,
+  onSearchSubmit,
+  handleSearchChange,
   search,
 }: Props): JSX.Element {
   return (
-    <div>
-      <input type="text" value={search} onChange={(e) => handleChange(e)} />
-      <button onClick={(e) => onClick(e)}>Click</button>
-    </div>
+    <>
+      <form onSubmit={onSearchSubmit}>
+        <input value={search} onChange={handleSearchChange} />
+      </form>
+    </>
   );
 }
