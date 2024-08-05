@@ -22,7 +22,9 @@ export default function CardList({
           />
         ))
       ) : (
-        <p>No such companies found</p>
+        <p className="mb-3 mt-3 text-xl font-semibold text-center md:text-xl">
+          No results!
+        </p>
       )}{" "}
     </>
   );

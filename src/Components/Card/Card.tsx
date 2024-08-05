@@ -13,13 +13,18 @@ const Card: React.FC<Props> = ({
   onPortfolioCreate,
 }: Props): JSX.Element => {
   return (
-    <div className="card">
-      <p>{searchResults.name}</p>
-      <div className="details">
-        <h2>{searchResults.exchangeShortName}</h2>
-        <p>${searchResults.currency}</p>
-      </div>
-      <p>{searchResults.stockExchange}</p>
+    <div
+      className="flex flex-col items-center justify-between w-full p-6 bg-slate-100 rounded-lg md:flex-row"
+      key={id}
+      id={id}
+    >
+      <h2 className="font-bold text-center text-black md:text-left">
+        {searchResults.name} ({searchResults.symbol})
+      </h2>
+      <p className="text-black">{searchResults.currency}</p>
+      <p className="font-bold text-black">
+        {searchResults.exchangeShortName} - {searchResults.stockExchange}
+      </p>
       <AddPortfolio
         onPortfolioCreate={onPortfolioCreate}
         symbol={searchResults.symbol}
