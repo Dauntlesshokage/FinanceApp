@@ -2,20 +2,12 @@ import { TestDataCompany } from "../Table/testData";
 
 const data = TestDataCompany[0];
 type Company = typeof data;
-const config = [
-  {
-    label: "Company Name",
-    render: (company: Company) => company.companyName,
-    subTitle: "This is the company's name",
-  },
-  {
-    label: "Company Name",
-    render: (company: Company) => company.companyName,
-    subTitle: "This is the company's name",
-  },
-];
-interface Props {}
-export default function RatioList(props: Props): JSX.Element {
+
+interface Props {
+  config: any;
+  data: any;
+}
+export default function RatioList({ config, data }: Props): JSX.Element {
   const renderedCells = config.map((row: any) => {
     return (
       <li className="py-6 sm:py-6">
