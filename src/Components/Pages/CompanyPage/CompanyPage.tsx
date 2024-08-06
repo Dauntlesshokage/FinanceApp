@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getCompanyProfile } from "../../../api";
 import Sidebar from "../../Sidebar/Sidebar";
 import CompanyDashboard from "../../CompanyDashboard/CompanyDashboard";
+import Tile from "../../Tile/Tile";
 
 interface Props {}
 export default function CompanyPage(props: Props): JSX.Element {
@@ -21,7 +22,9 @@ export default function CompanyPage(props: Props): JSX.Element {
       {company ? (
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
           <Sidebar />
-          <CompanyDashboard />
+          <CompanyDashboard ticker={ticker!}>
+            <Tile title="Company Name" subTitle={company.companyName}></Tile>
+          </CompanyDashboard>
         </div>
       ) : (
         <div>Not Found</div>
